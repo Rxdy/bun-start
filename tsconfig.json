@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "types": ["node"],
+        "target": "ESNext",
+        "module": "ESNext",
+        "strict": false,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "verbatimModuleSyntax": true,
+        "outDir": "./dist"
+    },
+    "include": ["src/**/*", "scripts/**/*"]
+}
