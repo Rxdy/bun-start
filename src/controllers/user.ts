@@ -1,5 +1,4 @@
 import { type Context } from "hono";
-import { crypt } from "../class/crypt";
 import { User } from "../models/user";
 class UserController {
     async get(c: Context) {

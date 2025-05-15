@@ -5,7 +5,7 @@ import { router as authRouter } from "./routers/auth";
 
 import { logger } from "./class/logger";
 import Database from "./database/db";
-import { swaggerRoute } from "./docs/swagger";
+import { swaggerRoute } from "./docs/API/swagger";
 
 const corsCredentials = process.env.CORS_CREDENTIALS === "true";
 const methods = process.env.CORS_METHODS

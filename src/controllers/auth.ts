@@ -2,7 +2,7 @@ import { type Context } from "hono";
 import { sign, verify } from "jsonwebtoken";
 import { logger } from "../class/logger";
 import { User } from "../models/user";
-import { crypt } from "../class/crypt";
+import { hasher } from "../class/hasher";
 import { Op, ValidationError } from "sequelize";
 
 class AuthController {
@@ -15,7 +15,7 @@ class AuthController {
                 400
             );
         }
-        const hashedPassword = await crypt.hash(data.password);
+        const hashedPassword = await hasher.hash(data.password);
 
         try {
             const newUser = await User.create({
@@ -60,7 +60,7 @@ class AuthController {
                 );
             }
 
-            const match = await crypt.compare(data.password, user.password);
+            const match = await hasher.compare(data.password, user.password);
             if (!match) {
                 logger.loggerAuth.warn(
                     "Échec de connexion: " +
