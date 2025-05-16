@@ -40,6 +40,12 @@ class Directory {
         await fs.writeFile(full, content, "utf-8");
     }
 
+    async writeBinaryFile(filePath: string, content: Buffer): Promise<void> {
+        const full = this.resolve(filePath);
+        await fs.mkdir(path.dirname(full), { recursive: true });
+        await fs.writeFile(full, content);
+    }
+
     async appendToFile(filePath: string, content: string): Promise<void> {
         const full = this.resolve(filePath);
         await fs.appendFile(full, content, "utf-8");
@@ -48,6 +54,14 @@ class Directory {
     async deleteFile(filePath: string): Promise<void> {
         const full = this.resolve(filePath);
         await fs.unlink(full);
+    }
+
+    async renderTemplate(templatePath: string, variables: Record<string, any>): Promise<string> {
+        const template = await this.readFile(templatePath);
+        return template.replace(/\{\{(.*?)\}\}/g, (_, key) => {
+            const value = variables[key.trim()];
+            return value !== undefined ? String(value) : "";
+        });
     }
 
     // --- JSON helpers ---
@@ -75,6 +89,10 @@ class Directory {
     async listFiles(folderPath: string): Promise<string[]> {
         const full = this.resolve(folderPath);
         return await fs.readdir(full);
+    }
+
+    getTemplatePath(templateName: string): string {
+        return this.resolve("templates", templateName);
     }
 
     // --- Fichiers utilitaires ---

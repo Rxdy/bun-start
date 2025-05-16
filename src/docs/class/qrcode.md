@@ -2,7 +2,7 @@
 
 Classe utilitaire basée sur [`qrcode`](https://www.npmjs.com/package/qrcode) permettant de générer des QR codes sous différents formats et d'encoder des données courantes (email, téléphone, Wi-Fi…).
 
-# 🔧 Méthodes disponibles
+## 🔧 Méthodes disponibles
 
 ### toDataURL
 
@@ -11,11 +11,13 @@ toDataURL(data: string): Promise<string>
 ```
 
 Génère un QR code au format Data URL base64 (image PNG).
-Utilisable directement dans une balise <img> :
+Utilisable directement dans une balise :
 
+```html
 <img src="data:image/png;base64,...">
+```
 
-## toBuffer
+### toBuffer
 
 ```ts
 toBuffer(data: string): Promise<Buffer>
@@ -24,7 +26,7 @@ toBuffer(data: string): Promise<Buffer>
 Génère un QR code sous forme de buffer brut (PNG).
 Utile pour l’enregistrement sur disque, les uploads ou les envois via API.
 
-## toSVG
+### toSVG
 
 ```ts
 toSVG(data: string): Promise<string>
@@ -32,7 +34,7 @@ toSVG(data: string): Promise<string>
 
 Retourne le QR code au format SVG (chaîne de texte).
 
-## toTerminal
+### toTerminal
 
 ```ts
 toTerminal(data: string): Promise<string>
@@ -41,7 +43,7 @@ toTerminal(data: string): Promise<string>
 Affiche un QR code en mode terminal (ASCII).
 Parfait pour des tests CLI, logs ou intégration sans interface graphique.
 
-## createLink
+### createLink
 
 ```ts
 createLink(url: string): string
@@ -50,7 +52,7 @@ createLink(url: string): string
 Retourne directement l’URL fournie.
 Utilité : homogénéiser l’appel avec les autres méthodes.
 
-## createEmail
+### createEmail
 
 ```ts
 createEmail(to: string, subject?: string, body?: string): string
@@ -62,7 +64,7 @@ Génère un lien mailto: encodé.
 Exemple :   mailto:test@example.com?subject=Hello&body=Test%20message
 ```
 
-## createSMS
+### createSMS
 
 ```ts
 createSMS(number: string, message?: string): string
@@ -70,7 +72,7 @@ createSMS(number: string, message?: string): string
 
 Génère un lien sms: utilisable dans un QR code.
 
-## createPhoneCall
+### createPhoneCall
 
 ```ts
 createPhoneCall(number: string): string
@@ -78,7 +80,7 @@ createPhoneCall(number: string): string
 
 Retourne un lien tel: pour appels téléphoniques.
 
-## createWifi
+### createWifi
 
 ```ts
 createWifi(
@@ -111,6 +113,6 @@ const wifiQR = await qrCode.toDataURL(wifi);
 
 ## 📦 Dépendances
 
--   qrcode
+- qrcode
 
--   Node.js Buffer (natif)
+- Node.js Buffer (natif)

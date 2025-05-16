@@ -1,10 +1,10 @@
-import { fromBuffer } from "file-type";
-import mime from "mime-types";
 import fs from "fs/promises";
+import mime from "mime-types";
 
 class FileType {
     async detectMimeFromBuffer(buffer: Buffer): Promise<string | null> {
-        const result = await fromBuffer(buffer);
+        const { fileTypeFromBuffer } = await import("file-type");
+        const result = await fileTypeFromBuffer(buffer);
         return result?.mime || null;
     }
 

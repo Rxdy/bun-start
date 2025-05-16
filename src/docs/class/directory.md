@@ -4,14 +4,14 @@ Classe utilitaire pour la manipulation avancée du système de fichiers via `fs/
 
 Permet la lecture, l'écriture, la suppression, la gestion JSON, les métadonnées, etc. depuis un `basePath` configurable.
 
-# 📌 Configuration
+## 📌 Configuration
 
 ```ts
 const dir = new Directory(); // Utilise process.cwd() par défaut
 const dir = new Directory("/chemin/perso"); // Base personnalisée
 ```
 
-# 🛠️ Méthodes disponibles
+## 🛠️ Méthodes disponibles
 
 ## 📍 Résolution de chemins
 
@@ -45,7 +45,17 @@ Lit le contenu d’un fichier texte.
 writeFile(filePath: string, content: string): Promise<void>
 ```
 
-Écrit (ou remplace) le contenu d’un fichier.
+Écrit (ou remplace) le contenu d’un fichier texte (utf-8).
+
+```ts
+async writeBinaryFile(filePath: string, content: Buffer): Promise<void> {
+        const full = this.resolve(filePath);
+        await fs.mkdir(path.dirname(full), { recursive: true });
+        await fs.writeFile(full, content);
+    }
+```
+
+Écrit (ou remplace) le contenu d’un fichier binaire (images, PDF, etc.).
 
 ```ts
 appendToFile(filePath: string, content: string): Promise<void>
@@ -58,6 +68,18 @@ deleteFile(filePath: string): Promise<void>
 ```
 
 Supprime un fichier.
+
+```ts
+renderTemplate(templatePath: string, variables: Record<string, any>): Promise<string>
+```
+
+Lit un fichier template et remplace les placeholders {{ key }} par les valeurs correspondantes dans l’objet variables.
+
+```ts
+getTemplatePath(templateName: string): string
+```
+
+Renvoie le chemin complet vers un template situé dans le dossier templates à partir du basePath.
 
 ## 📦 JSON helpers
 
@@ -121,13 +143,13 @@ getMetadata(path: string): Promise<{...}>
 
 Renvoie :
 
--   size: Taille en octets
+- size: Taille en octets
 
--   createdAt: Date de création
+- createdAt: Date de création
 
--   modifiedAt: Dernière modification
+- modifiedAt: Dernière modification
 
--   isFile, isDirectory: Booléens
+- isFile, isDirectory: Booléens
 
 ## 💡 Exemples
 
@@ -137,6 +159,6 @@ await directory.moveFile("old.txt", "backup/old.txt");
 
 ## 📦 Dépendances
 
--   fs/promises
+- fs/promises
 
--   path (standard Node.js)
+- path (standard Node.js)
