@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .header {
+                background-color: #f4f4f4;
+                padding: 10px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Bienvenue sur {{appName}} !</h1>
+            </div>
+            <p>Bonjour {{name}},</p>
+            <p>
+                Merci de vous être inscrit sur {{appName}}. Vous êtes maintenant
+                prêt à explorer nos fonctionnalités !
+            </p>
+            <p>Cordialement,<br />L’équipe {{appName}}</p>
+        </div>
+    </body>
+</html>

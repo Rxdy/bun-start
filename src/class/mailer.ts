@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { directory } from "./directory"; // ta classe existante
+import { directory } from "./directory";
 
 interface MailOptions {
     to: string;
@@ -15,7 +15,7 @@ class Mailer {
         this.transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT),
-            secure: process.env.SMTP_SECURE === "true", // true pour port 465, false sinon
+            secure: process.env.SMTP_SECURE === "true",
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASSWORD,
@@ -23,7 +23,10 @@ class Mailer {
         });
     }
 
-    private async renderTemplate(templatePath: string, variables?: Record<string, any>): Promise<string> {
+    private async renderTemplate(
+        templatePath: string,
+        variables?: Record<string, any>
+    ): Promise<string> {
         const fullPath = directory.resolve("templates", templatePath);
         let template = await directory.readFile(fullPath);
 
@@ -38,7 +41,10 @@ class Mailer {
     }
 
     public async send(options: MailOptions): Promise<void> {
-        const html = await this.renderTemplate(options.template, options.variables);
+        const html = await this.renderTemplate(
+            options.template,
+            options.variables
+        );
 
         await this.transporter.sendMail({
             from: process.env.SMTP_FROM || '"App" <no-reply@example.com>',
