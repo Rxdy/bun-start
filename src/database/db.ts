@@ -46,6 +46,22 @@ class Database {
         }
     }
 
+    public async connect() {
+        try {
+            await initializeAllModels(this.sequelize);
+            await this.sequelize.authenticate();
+
+            await this.sequelize.sync({ alter: true });
+
+            logger.loggerApi.info(
+                `✅ [MySQL] Connecté à ${process.env.MYSQL_DATABASE}`
+            );
+        } catch (error) {
+            logger.loggerApi.error("❌ [MySQL] Erreur de connexion:", error);
+            throw error;
+        }
+    }
+
     public async close() {
         await this.sequelize.close();
         logger.loggerSequelize.info("🛑 [MySQL] Connexion fermée");

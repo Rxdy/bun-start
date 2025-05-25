@@ -59,7 +59,7 @@ router.post("/register", validate(registerSchema), authController.register);
  *       500:
  *         description: Erreur interne du serveur
  */
-router.get("/me", authentification, authController.profil);
+router.get("/", authentification, authController.profil);
 
 /**
  * @swagger

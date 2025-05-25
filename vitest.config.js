@@ -9,6 +9,6 @@ export default defineConfig({
         ],
         environment: "node",
         clearMocks: true,
-        globals: true, // permet d'utiliser describe/test/vi sans les importer
+        globals: true, 
     },
 });
