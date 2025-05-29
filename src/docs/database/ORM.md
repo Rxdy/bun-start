@@ -144,24 +144,24 @@ C'est au développeur de s'assurer que les models et migrations soient alignés
 
 Exemple : ajout d'un champ "bio" à User
 
-Tu modifies le model User
+    Tu modifies le model User
 
-Tu crées une migration add-bio-to-user
+    Tu crées une migration add-bio-to-user
 
-Tu lances sequelize-cli db:migrate
+    Tu lances sequelize-cli db:migrate
 
-Tu peux rollback avec db:migrate:undo
+    Tu peux rollback avec db:migrate:undo
 
 ## Importance des rollback (undo)
 
 Les migrations et seeds ont un grand avantage :
 
-Pouvoir revenir en arrière si quelque chose tourne mal
+-   Pouvoir revenir en arrière si quelque chose tourne mal
 
 Cela permet :
 
-Des tests plus sûrs
+-   Des tests plus sûrs
 
-Une prod plus stable
+-   Une prod plus stable
 
-Une gestion fine des changements de structure ou de données
+-   Une gestion fine des changements de structure ou de données
