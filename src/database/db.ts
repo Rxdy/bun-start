@@ -1,5 +1,5 @@
 import { Sequelize, type Transaction } from "sequelize";
-import { initializeAllModels } from "../models";
+import { initializeAllModels } from "./models";
 import { logger } from "../class/logger";
 
 class Database {
