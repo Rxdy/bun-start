@@ -1,7 +1,7 @@
 import { type Context } from "hono";
 import { sign, verify } from "jsonwebtoken";
 import { logger } from "../class/logger";
-import { User } from "../models/user";
+import { User } from "../database/models/user";
 import { hasher } from "../class/hasher";
 import { Op, ValidationError } from "sequelize";
 

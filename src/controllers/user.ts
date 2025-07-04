@@ -1,5 +1,5 @@
 import { type Context } from "hono";
-import { User } from "../models/user";
+import { User } from "../database/models/user";
 class UserController {
     async get(c: Context) {
         const userId = c.get("userId");

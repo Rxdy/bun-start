@@ -1,5 +1,5 @@
 import { DataTypes, Model, type Optional, Sequelize } from "sequelize";
-import identifier from "../class/identifier";
+import identifier from "../../class/identifier";
 
 interface UserAttributes {
     id: string;
